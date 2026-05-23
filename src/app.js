@@ -15,9 +15,13 @@ const app = express();
 
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: [
+      "http://localhost:5174",
+      "https://dev-match-frontend-sand.vercel.app",
+    ],
+
     credentials: true,
-  })
+  }),
 );
 
 app.use(express.json());
@@ -29,7 +33,6 @@ app.use("/", profileRouter);
 app.use("/", connectionRequestRouter);
 app.use("/", requestesReceived);
 app.use("/", chatRouter);
-
 
 const server = http.createServer(app);
 initializeSocket(server);
