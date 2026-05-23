@@ -16,6 +16,7 @@ const initializeSocket = (server) => {
         "http://localhost:5174",
         "https://dev-match-frontend-sand.vercel.app",
       ],
+      credentials: true,
     },
   });
 
