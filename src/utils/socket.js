@@ -12,7 +12,10 @@ const getSecretRoomId = (userId, targetUserId) => {
 const initializeSocket = (server) => {
   const io = socket(server, {
     cors: {
-      origin: "http://localhost:5173",
+      origin: [
+        "http://localhost:5174",
+        "https://dev-match-frontend-sand.vercel.app",
+      ],
     },
   });
 
@@ -70,7 +73,7 @@ const initializeSocket = (server) => {
           console.log("error:", error);
           return error;
         }
-      }
+      },
     );
     socket.on("disconnect", () => {
       console.log("user disconnected");
