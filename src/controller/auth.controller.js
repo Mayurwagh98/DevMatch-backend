@@ -22,6 +22,7 @@ const signup = async (req, res) => {
 
       res.cookie("token", token, {
         expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 7),
+        sameSite: "none",
       });
 
       res.status(201).json({ success: true, message: "user created", newUser });
@@ -50,6 +51,7 @@ const login = async (req, res) => {
 
     res.cookie("token", token, {
       expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 7),
+      sameSite: "none",
     });
     // Sanitize user object before sending
     const sanitizedUser = user.toObject(); // Convert Mongoose doc to plain JS object
@@ -64,7 +66,10 @@ const login = async (req, res) => {
 };
 
 const logout = async (req, res) => {
-  res.cookie("token", null, { expires: new Date(Date.now()) });
+  res.cookie("token", null, {
+    expires: new Date(Date.now()),
+    sameSite: "none",
+  });
   res.status(200).send("logout successful");
 };
 
